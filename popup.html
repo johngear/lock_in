@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Focus Bot</title>
+    <style>
+        .page { display: none; }
+        .active { display: block; }
+
+        
+        body {
+            width: 300px;
+            padding: 10px;
+        }
+        #questionInput {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        #apiResult {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 5px;
+            margin-top: 10px;
+        }
+        #timeLeft {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+        #lockLogo {
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #lockLogo.unlocked {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div id="startPage" class="page active">
+        <div>
+            <img id="lockLogo" src="images/unlocked.svg" alt="Lock logo" width="50" height="50">
+            <h2>Lock In</h2>
+        </div>
+        <p>I want to get <input type="text" id="goalInput" placeholder="goal"> done</p>
+        <p>within the next <input type="number" id="timeInput" min="1" max="180"> minutes</p>
+        <button id="startButton">Start</button>
+    </div>
+
+    <div id="activePage" class="page">
+        <img id="lockLogo" src="images/locked.svg" alt="Lock logo" width="50" height="50">
+        <h2>currently Locked In</h2>
+        <p>working on: <span id="activeGoal"></span></p>
+        <p id="timeLeft"></p>
+        <button id="exitButton">Exit Goal</button>
+    </div>
+
+    <!-- <div id="popupPage" class="page">
+        <h2>Focus Bot - Message</h2>
+        <p id="popupMessage"></p>
+        <button id="popupCloseButton">Close</button>
+    </div> -->
+
+    <div id="endPage" class="page">
+        <h2>You're done Locking In</h2>
+        <p id="completionMessage"></p>
+        <button id="newGoalButton">Set New Goal</button>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+const CEREBRAS_API_KEY = '';
+
+const url = 'https://api.cerebras.ai/v1/chat/completions';
+
+const data = {
+  model: "llama3.1-70b",
+  stream: false,
+  messages: [{"content": "why is fast inference important?", "role": "user"}],
+  prompt: "",
+  temperature: 0,
+  stop_sequence: "",
+  max_tokens: -1,
+  seed: 0,
+  top_p: 1
+};
+
+fetch(url, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${CEREBRAS_API_KEY}`
+  },
+  body: JSON.stringify(data)
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));
+
+
+
+</script>
+</body>
+</html>
+
